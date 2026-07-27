@@ -113,8 +113,8 @@ TMDB API를 활용하여 다양한 영화 정보를 탐색할 수 있는 영화 
 
 ## ✅ 07/23 (목) - 프로젝트 세팅
 
-- [ ] Vite 프로젝트 생성
-- [ ] npm install
+- [x] Vite 프로젝트 생성
+- [x] npm install
 - [ ] React Router DOM 설치
 - [ ] Tailwind CSS 설치
 - [ ] Axios 설치
