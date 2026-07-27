@@ -10,8 +10,7 @@ import ErrorPage from "./pages/ErrorPage";
 export default function Router() {
   return (
     <HashRouter>
-      <Header />
-
+      <Header />ㅞ
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/movie/:id" element={<Movie />}></Route>
@@ -19,7 +18,6 @@ export default function Router() {
         <Route path="/search" element={<Search />}></Route>
         <Route path="*" element={<ErrorPage />}></Route>
       </Routes>
-
       <Footer />
     </HashRouter>
   );

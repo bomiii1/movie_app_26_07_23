@@ -109,134 +109,92 @@ TMDB API를 활용하여 다양한 영화 정보를 탐색할 수 있는 영화 
 | --------------- | --------------- |
 | ![](이미지주소) | ![](이미지주소) |
 
-# 📅 Development Schedule
+## 📅 개발 일정 (4~5시간/일)
 
-## ✅ 07/23 (목) - 프로젝트 세팅
+### ✅ 7/27 (월) - 프로젝트 초기 세팅
 
 - [x] Vite 프로젝트 생성
-- [x] npm install
-- [ ] React Router DOM 설치
-- [ ] Tailwind CSS 설치
-- [ ] Axios 설치
-- [ ] Swiper 설치
-- [ ] Lucide React 설치
-- [ ] React Helmet Async 설치
-- [ ] 폴더 구조 생성
-- [ ] GitHub Repository 생성 및 연결
-- [ ] 초기 Commit
+- [x] Tailwind CSS 설치
+- [x] React Router 설치
+- [x] 기본 폴더 구조 생성
+- [x] Router 연결
+- [x] Home / Movie / Profile / Search / ErrorPage 생성
+- [x] Header / Footer 생성
+- [x] 라우터 정상 동작 확인
+- [x] Header UI 제작
+- [x] Footer UI 제작
 
 ---
 
-## ✅ 07/24 (금) - 공통 레이아웃
+### 📅 7/28 (화) - 공통 레이아웃
 
-- [ ] Router 설정
-- [ ] Layout 구성
-- [ ] Header 제작
-- [ ] Footer 제작
-- [ ] Loading 컴포넌트 제작
-- [ ] ScrollTop Hook 제작
-- [ ] API 파일 생성
+- [ ] Header 메뉴(Link) 연결
+- [ ] Footer 마무리
+- [ ] 공통 Layout 정리
+- [ ] 공통 버튼 스타일
+- [ ] 공통 Container 작성
 
 ---
 
-## ✅ 07/27 (월) - Home (Hero / 현재 상영)
+### 📅 7/29 (수) - TMDB API 연결
 
-- [ ] Hero Slider 구현
-- [ ] 인기 영화 TOP5 API 연결
-- [ ] 자동 슬라이드 적용
-- [ ] 현재 상영 중인 영화 API 연결
-- [ ] UI 제작
-
----
-
-## ✅ 07/28 (화) - Home (나머지 섹션)
-
-- [ ] 인기 영화 TOP10
-- [ ] TOP10 랭킹 UI
-- [ ] 장르별 추천 영화
-- [ ] 개봉 예정 영화
-- [ ] Home 페이지 마무리
+- [ ] TMDB API KEY 발급
+- [ ] .env 설정
+- [ ] api/movieApi.js 작성
+- [ ] API 함수 작성
+- [ ] 인기 영화 데이터 출력 테스트
 
 ---
 
-## ✅ 07/29 (수) - Movie Detail (기본 정보)
+### 📅 7/30 (목) - Home 상단
 
-- [ ] 영화 상세 API 연결
-- [ ] 제목
-- [ ] 한 줄 소개
-- [ ] 개봉일
-- [ ] 장르
-- [ ] 러닝타임
-- [ ] 평점
-- [ ] 줄거리
+- [ ] Hero Section
+- [ ] Swiper 적용
+- [ ] 인기 영화 배경
+- [ ] Hero 버튼
 
 ---
 
-## ✅ 07/30 (목) - Movie Detail (추가 정보)
+### 📅 7/31 (금) - Home 본문
 
+- [ ] Now Playing
+- [ ] Top 10
+- [ ] Movie Card 컴포넌트
+- [ ] 랭킹 숫자 디자인
+
+---
+
+### 📅 8/3 (월) - Home 완성
+
+- [ ] Genre Section
+- [ ] Upcoming Section
+- [ ] Home 전체 스타일 수정
+
+---
+
+### 📅 8/4 (화) - Movie 상세페이지
+
+- [ ] 영화 정보
 - [ ] 예고편
+- [ ] Similar Movies
+- [ ] 상세페이지 UI
+
+---
+
+### 📅 8/5 (수) - Profile & Search
+
+- [ ] Profile(인물) 페이지
 - [ ] 배우 정보
-- [ ] 감독 정보
-- [ ] OTT 서비스 정보
-- [ ] 비슷한 영화 추천
+- [ ] 출연 작품
+- [ ] Search 페이지
+- [ ] 검색 결과 UI
 
 ---
 
-## ✅ 07/31 (금) - Person Detail
+### 📅 8/6 (목) - 마무리
 
-- [ ] 프로필 사진
-- [ ] 이름
-- [ ] 직업
-- [ ] 출생 정보
-- [ ] 소개(Biography)
-- [ ] 대표 작품
-- [ ] 영화 상세페이지 연결
-
----
-
-## ✅ 08/03 (월) - Search
-
-- [ ] 검색 페이지 제작
-- [ ] Search API 연결
-- [ ] 검색 결과 출력
-- [ ] 검색 결과 없음 화면
-- [ ] 영화 상세페이지 이동
-
----
-
-## ✅ 08/04 (화) - UI 마무리
-
-- [ ] 반응형 적용
-- [ ] Hover 효과
-- [ ] Loading 적용
-- [ ] 빈 데이터 처리
-- [ ] 디자인 수정
-
----
-
-## ✅ 08/05 (수) - 오류 수정
-
-- [ ] 버그 수정
-- [ ] 코드 리팩토링
-- [ ] Console 오류 제거
-- [ ] API 예외 처리
-- [ ] 최종 기능 점검
-
----
-
-## ✅ 08/06 (목) - 배포
-
-- [ ] GitHub 정리
-- [ ] README 작성
-- [ ] Vercel 배포
-- [ ] 스크린샷 추가
-
----
-
-## ✅ 08/07 (금) - 최종 마무리
-
-- [ ] 전체 기능 테스트
-- [ ] 반응형 최종 점검
-- [ ] 디자인 수정
-- [ ] 최종 배포 확인
-- [ ] 프로젝트 완료 🎉
+- [ ] 전체 UI 수정
+- [ ] 반응형 수정
+- [ ] 코드 정리
+- [ ] GitHub Push
+- [ ] README 정리
