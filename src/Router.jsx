@@ -6,14 +6,16 @@ import Movie from "./pages/movie/Movie";
 import Search from "./pages/search/Search";
 import Profile from "./pages/profile/Profile";
 import ErrorPage from "./pages/ErrorPage";
+import Recommend from "./pages/recommend/Recommend";
 
 export default function Router() {
   return (
     <HashRouter>
-      <Header />ㅞ
+      <Header />
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/movie/:id" element={<Movie />}></Route>
+        <Route paht="/recommend" element={<Recommend />}></Route>
         <Route path="/profile/:id" element={<Profile />}></Route>
         <Route path="/search" element={<Search />}></Route>
         <Route path="*" element={<ErrorPage />}></Route>

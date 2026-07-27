@@ -1,3 +1,3 @@
 export default function Search() {
-  return <div>search</div>;
+  return <div className="mt-[80px]">search</div>;
 }
