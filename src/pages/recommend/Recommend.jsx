@@ -1,3 +1,3 @@
 export default function Recommend() {
-  return <div className="mt-[180px]">recommend</div>;
+  return <div className="mt-[80px]">recommend</div>;
 }
