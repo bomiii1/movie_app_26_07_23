@@ -17,14 +17,12 @@ export default function Home() {
           getNowPlaying(),
           getPopular(),
           getUpcoming(),
-          getGenres(),
         ]);
 
         setMovieData({
           nowPlaying,
           popular,
           upcoming,
-          genres,
         });
       } catch (error) {
         console.log(error);
