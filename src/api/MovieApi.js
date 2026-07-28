@@ -6,12 +6,20 @@ const options = {
   },
 };
 
-export const getPopular = () => {
-  return fetch("https://api.themoviedb.org/3/movie/popular", options);
+const baseURL = "https://api.themoviedb.org/3/";
+
+const fetchMovie = async (endpoint) => {
+  const url = new URL(baseURL + endpoint);
+
+  url.searchParams.set("language", "ko-KR");
+
+  const response = await fetch(url, options);
+  return response.json();
 };
 
-export const getNowPlaying = () => {
-  return fetch("https://api.themoviedb.org/3/movie/now_playing", options);
-};
+export const getPopular = () => fetchMovie("movie/popular");
+export const getNowPlaying = () => fetchMovie("movie/now_playing");
+export const getTopRated = () => fetchMovie("movie/top_rated");
+export const getUpcoming = () => fetchMovie("movie/upcoming");
 
-console.log(getPopular);
+getPopular();
