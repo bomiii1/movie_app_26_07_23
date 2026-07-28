@@ -21,5 +21,3 @@ export const getPopular = () => fetchMovie("movie/popular");
 export const getNowPlaying = () => fetchMovie("movie/now_playing");
 export const getTopRated = () => fetchMovie("movie/top_rated");
 export const getUpcoming = () => fetchMovie("movie/upcoming");
-
-getPopular();
