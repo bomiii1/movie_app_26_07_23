@@ -128,8 +128,8 @@ TMDB API를 활용하여 다양한 영화 정보를 탐색할 수 있는 영화 
 
 ### 📅 7/28 (화) - 공통 레이아웃
 
-- [ ] Header 메뉴(Link) 연결
-- [ ] Footer 마무리
+- [x] Header 메뉴(Link) 연결
+- [x] Footer 마무리
 - [ ] 공통 Layout 정리
 - [ ] 공통 버튼 스타일
 - [ ] 공통 Container 작성

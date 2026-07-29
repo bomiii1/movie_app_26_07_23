@@ -1,0 +1,46 @@
+.hero-swiper {
+  width: 100%;
+  height: 600px;
+}
+
+.hero-bg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1);
+  will-change: transform;
+}
+
+.hero-bg-active {
+  animation: heroZoom 8s linear forwards;
+}
+
+@keyframes heroZoom {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.08);
+  }
+}
+
+.hero-swiper .swiper-pagination {
+  bottom: 30px;
+  left: 150px;
+  width: auto;
+  display: flex;
+  gap: 8px;
+}
+
+.hero-swiper .swiper-pagination-bullet {
+  width: 18px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.hero-swiper .swiper-pagination-bullet-active {
+  width: 18px;
+  background: rgba(255, 255, 255, 0.65);
+}
