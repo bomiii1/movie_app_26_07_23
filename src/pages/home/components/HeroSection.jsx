@@ -12,8 +12,6 @@ import "swiper/css/effect-fade";
 import "./HeroSection.css";
 
 export default function HeroSection({ movies }) {
-  if (!movies || movies.length === 0) return null;
-
   const top5Movie = movies.slice(0, 5);
 
   return (
@@ -39,7 +37,7 @@ export default function HeroSection({ movies }) {
         {top5Movie.map((movie) => (
           <SwiperSlide key={movie.id}>
             {({ isActive }) => (
-              <div className="relative w-full h-[600px] overflow-hidden">
+              <div className="relative w-full h-[750px] overflow-hidden">
                 <img
                   src={OriginalURL + movie.backdrop_path}
                   alt={movie.title}
@@ -50,7 +48,7 @@ export default function HeroSection({ movies }) {
 
                 <div className="absolute z-10 inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
 
-                <div className="absolute z-20 top-[310px] left-[150px]">
+                <div className="absolute z-20 top-[400px] left-[150px]">
                   <h2 className="mb-1.5 text-5xl font-bold">{movie.title}</h2>
 
                   <p className="text-white/60">{movie.original_title}</p>

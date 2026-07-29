@@ -13,7 +13,7 @@ export default function Home() {
   useEffect(() => {
     const getMovieData = async () => {
       try {
-        const [nowPlaying, popular, upcoming, genres] = await Promise.all([
+        const [nowPlaying, popular, upcoming] = await Promise.all([
           getNowPlaying(),
           getPopular(),
           getUpcoming(),
@@ -41,9 +41,9 @@ export default function Home() {
   return (
     <div className="mt-[80px]">
       <HeroSection movies={movieData?.popular?.results} />
-      <NowPlayingSection />
-      <Top10Section />
-      <UpcomingSection />
+      <NowPlayingSection movies={movieData?.nowPlaying?.results} />
+      <Top10Section movies={movieData?.popular?.results} />
+      <UpcomingSection movies={movieData?.popular?.results} />
     </div>
   );
 }
