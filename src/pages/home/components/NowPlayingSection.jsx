@@ -8,14 +8,20 @@ import "swiper/swiper.css";
 export default function NowPlayingSection({ movies }) {
   console.log(movies[0]);
   return (
-    <div className="px-[150px] mt-[100px]">
+    <div
+      className="xl:px-[150px] xl:mt-[100px]
+    lg:px-[80px]
+    lg:mt-[60px]
+    md:px-[25px]
+    md:mt-[30px]"
+    >
       <h2 className="text-3xl font-bold mb-[50px]">현재 상영중</h2>
       <Swiper slidesPerView={4.7} spaceBetween={20}>
         {movies?.map((movie) => (
           <SwiperSlide key={movie.id}>
             <Link to={`/movie/${movie.id}`}>
-              <div>
-                <div className="w-full h-[430px] object-cover object-cneter overflow-hidden">
+              <div className="">
+                <div className="w-full object-cover object-cneter overflow-hidden">
                   <img
                     src={Img500URL + movie.poster_path}
                     alt={movie.title}

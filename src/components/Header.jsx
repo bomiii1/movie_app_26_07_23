@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function Header() {
   return (
-    <header className="flex py-2 h-[80px] justify-between items-center px-[150px] fixed top-0 left-0 w-full">
+    <header className="z-100 flex py-2 h-[80px] justify-between items-center px-[150px] fixed top-0 left-0 w-full">
       <div className="text-red-500 font-black text-2xl">
         <Link to={"/"}>BOM-MOVIE</Link>
       </div>
