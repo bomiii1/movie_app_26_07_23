@@ -39,7 +39,7 @@ export default function Home() {
   }
 
   return (
-    <div className="mt-[80px]">
+    <div>
       <HeroSection movies={movieData?.popular?.results} />
       <NowPlayingSection movies={movieData?.nowPlaying?.results} />
       <Top10Section movies={movieData?.popular?.results} />

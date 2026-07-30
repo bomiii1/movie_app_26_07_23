@@ -9,7 +9,7 @@ import {
 import { Link, useParams } from "react-router-dom";
 import { Img500URL, OriginalURL } from "../../constants/imgBaseUrl";
 import Loading from "../../components/Loading";
-import { CalendarDays, Clock3, Play, Star } from "lucide-react";
+import { CalendarDays, Clock3, Play, Star, TvMinimalPlay } from "lucide-react";
 
 export default function Movie() {
   const { id } = useParams();
@@ -100,7 +100,7 @@ export default function Movie() {
                 href={`https://www.youtube.com/watch?v=${trailer.key}`}
                 target="_blank"
                 rel="noreferrer"
-                className="mt-5 flex w-full items-center justify-center gap-2 rounded-xl bg-red-500 py-4 text-[16px] font-bold text-white transition hover:bg-red-800"
+                className="mt-5 flex w-full items-center justify-center gap-2 rounded-xl bg-red-500 py-4 text-[16px] font-bold text-white transition hover:bg-red-800 active:scale-95 transition-all"
               >
                 <Play className="w-[20px] fill-white" />
                 예고편 보러 가기
@@ -117,7 +117,8 @@ export default function Movie() {
             )}
 
             <section className="mt-10 pt-8">
-              <h2 className="text-[20px] font-bold text-white">
+              <h2 className="text-[20px] flex items-center gap-2 font-bold text-white">
+                <TvMinimalPlay className="text-white/70" />
                 시청 가능한 플랫폼
               </h2>
 
@@ -125,20 +126,16 @@ export default function Movie() {
                 <div className="mt-6 space-y-7">
                   {streamingProviders.length > 0 && (
                     <div>
-                      <p className="mb-3 text-[13px] tracking-[2px] text-white/50">
-                        스트리밍
-                      </p>
-
-                      <div className="flex flex-wrap gap-4">
+                      <div className="flex flex-wrap gap-1">
                         {streamingProviders.map((provider) => (
                           <div
                             key={provider.provider_id}
-                            className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3"
+                            className="flex flex-col justify-centeritems-center gap-3 px-3 py-3"
                           >
                             <img
                               src={Img500URL + provider.logo_path}
                               alt={provider.provider_name}
-                              className="h-[42px] w-[42px] rounded-lg object-cover"
+                              className="h-[42px] w-[42px] rounded-full object-cover "
                             />
 
                             <span className="text-[14px] font-semibold text-white">
@@ -149,75 +146,6 @@ export default function Movie() {
                       </div>
                     </div>
                   )}
-
-                  {rentProviders.length > 0 && (
-                    <div>
-                      <p className="mb-3 text-[13px] tracking-[2px] text-white/50">
-                        대여
-                      </p>
-
-                      <div className="flex flex-wrap gap-4">
-                        {rentProviders.map((provider) => (
-                          <div
-                            key={provider.provider_id}
-                            className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3"
-                          >
-                            <img
-                              src={Img500URL + provider.logo_path}
-                              alt={provider.provider_name}
-                              className="h-[42px] w-[42px] rounded-lg object-cover"
-                            />
-
-                            <span className="text-[14px] font-semibold text-white">
-                              {provider.provider_name}
-                            </span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                  {buyProviders.length > 0 && (
-                    <div>
-                      <p className="mb-3 text-[13px] tracking-[2px] text-white/50">
-                        구매
-                      </p>
-
-                      <div className="flex flex-wrap gap-4">
-                        {buyProviders.map((provider) => (
-                          <div
-                            key={provider.provider_id}
-                            className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3"
-                          >
-                            <img
-                              src={Img500URL + provider.logo_path}
-                              alt={provider.provider_name}
-                              className="h-[42px] w-[42px] rounded-lg object-cover"
-                            />
-
-                            <span className="text-[14px] font-semibold text-white">
-                              {provider.provider_name}
-                            </span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                  {krProviders.link && (
-                    <a
-                      href={krProviders.link}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-block text-[13px] text-white/50 underline underline-offset-4 hover:text-white"
-                    >
-                      전체 시청 정보 보기
-                    </a>
-                  )}
-
-                  <p className="text-[11px] text-white/35">
-                    시청 정보 제공: JustWatch
-                  </p>
                 </div>
               ) : (
                 <p className="mt-4 text-[14px] text-white/50">

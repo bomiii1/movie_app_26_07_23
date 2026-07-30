@@ -15,7 +15,7 @@ export default function Router() {
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/movie/:id" element={<Movie />}></Route>
-        <Route paht="/recommend" element={<Recommend />}></Route>
+        <Route path="/recommend" element={<Recommend />}></Route>
         <Route path="/profile/:id" element={<Profile />}></Route>
         <Route path="/search" element={<Search />}></Route>
         <Route path="*" element={<ErrorPage />}></Route>
