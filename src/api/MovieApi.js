@@ -22,3 +22,8 @@ export const getNowPlaying = () => fetchMovie("movie/now_playing");
 export const getTopRated = () => fetchMovie("movie/top_rated");
 export const getUpcoming = () => fetchMovie("movie/upcoming");
 export const getDetail = (id) => fetchMovie(`movie/${id}`);
+export const getCredits = (id) => fetchMovie(`movie/${id}/credits`);
+export const getVideos = (id) => fetchMovie(`movie/${id}/videos`);
+export const getWatchProviders = (id) =>
+  fetchMovie(`movie/${id}/watch/providers`);
+export const getSimilar = (id) => fetchMovie(`movie/${id}/similar`);
