@@ -83,7 +83,7 @@ export default function Movie() {
 
   return (
     <div>
-      <section className="relative pt-[80px] h-[100vh] overflow-hidden">
+      <section className="relative pt-[80px] h-auto pt-[30px] pb-[50px] overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
@@ -104,10 +104,10 @@ export default function Movie() {
           md:px-[20px]
           px-[20px]
 
-          gap-[15px]
-          xl:gap-10
-          lg:gap-8
-          md:gap-6
+          gap-[30px]
+          xl:gap-15
+          lg:gap-12
+          md:gap-10
           "
         >
           <div className="w-[40%]">
@@ -174,28 +174,28 @@ export default function Movie() {
               </button>
             )}
 
-            <section className="mt-10 pt-8">
-              <h2 className="flex items-center gap-2 text-[20px] font-bold text-white">
-                <TvMinimalPlay className="text-white/70" />
+            <section className="xl:mt-5 mt-2 pt-8">
+              <h2 className="flex items-center gap-2 xl:text-[20px] text-[10px] xl:font-bold font-semibold text-white">
+                <TvMinimalPlay className="text-white/70 xl:w-[30px] w-[15px]" />
                 시청 가능한 플랫폼
               </h2>
 
               {krProviders ? (
-                <div className="mt-6 space-y-7">
+                <div className="xl:mt-6 mt-1 space-y-7">
                   {streamingProviders.length > 0 ? (
                     <div className="flex flex-wrap gap-1">
                       {streamingProviders.map((provider) => (
                         <div
                           key={provider.provider_id}
-                          className="flex flex-col items-center justify-center gap-3 px-3 py-3"
+                          className="flex flex-col items-center justify-center xl:gap-3 gap-1.5 xl:px-3 xl:py-3 px-1 py-1"
                         >
                           <img
                             src={Img500URL + provider.logo_path}
                             alt={provider.provider_name}
-                            className="h-[42px] w-[42px] rounded-full object-cover"
+                            className="xl:h-[42px] xl:w-[42px] h-[25px] w-[25px] rounded-full object-cover"
                           />
 
-                          <span className="text-[14px] font-semibold text-white">
+                          <span className="xl:text-[14px] text-[10px] font-semibold text-white">
                             {provider.provider_name}
                           </span>
                         </div>
@@ -323,32 +323,32 @@ export default function Movie() {
             </div>
 
             {movie.tagline && (
-              <div className="mt-8 flex justify-center">
-                <p className="mt-2 text-[28px] font-light italic text-white/85">
+              <div className="xl:mt-8 mt-3 flex justify-center">
+                <p className="mt-2 xl:text-[28px] text-[15px] font-light italic text-white/85">
                   “{movie.tagline}”
                 </p>
               </div>
             )}
 
-            <div className="mt-10 flex w-full justify-center border-t border-white/15 pt-8">
-              <div className="flex items-start xl:gap-20">
+            <div className="xl:mt-10 mt-5 w-full border-t border-white/15 xl:pt-8 pt-4">
+              <div className="flex w-full flex-col xl:gap-8 gap-5 xl:flex-row xl:items-start xl:justify-end xl:gap-20">
                 {/* 감독 */}
                 <div>
-                  <h2 className="mb-4 text-[13px] font-semibold tracking-[3px] text-white/50">
+                  <h2 className="xl:mb-4 mb-3 text-[13px] font-semibold tracking-[3px] text-white/50">
                     DIRECTOR
                   </h2>
 
                   {director ? (
                     <Link to={`/profile/${director.id}`}>
-                      <div className="flex flex-col gap-4 group overflow-hidden">
+                      <div className="group flex xl:items-center items-end xl:gap-4 gap-3 overflow-hidden xl:flex-col xl:items-start">
                         {director.profile_path ? (
                           <img
                             src={Img500URL + director.profile_path}
                             alt={director.name}
-                            className="h-[150px] w-[110px] rounded-[5px] object-cover transition duration-200 group-hover:scale-105"
+                            className="h-[100px] w-[65px] rounded-[5px] object-cover transition duration-200 group-hover:scale-105 xl:h-[150px] xl:w-[110px]"
                           />
                         ) : (
-                          <div className="flex h-[150px] w-[110px] items-center justify-center rounded-xl bg-white/10 px-2 text-center text-[11px] text-white/40">
+                          <div className="flex h-[100px] w-[65px] items-center justify-center rounded-xl bg-white/10 px-2 text-center text-[11px] text-white/40 xl:h-[150px] xl:w-[110px]">
                             이미지 없음
                           </div>
                         )}
@@ -368,36 +368,37 @@ export default function Movie() {
                     <p className="text-[13px] text-white/45">감독 정보 없음</p>
                   )}
                 </div>
+
                 {/* 출연 */}
                 <div className="min-w-0 flex-1">
                   <h2 className="mb-4 text-[13px] font-semibold tracking-[3px] text-white/50">
                     CAST
                   </h2>
 
-                  <div className="flex gap-4 overflow-x-auto pb-4">
+                  <div className="flex w-full gap-4  pb-4">
                     {cast.map((person) => (
                       <Link
                         key={person.cast_id || person.id}
                         to={`/profile/${person.id}`}
                       >
-                        <div className="w-[110px] group">
+                        <div className="group w-[65px] xl:w-[110px]">
                           {person.profile_path ? (
                             <img
                               src={Img500URL + person.profile_path}
                               alt={person.name}
-                              className="h-[150px] w-[110px] rounded-xl object-cover transition duration-200 group-hover:scale-105"
+                              className="h-[100px] w-[65px] rounded-xl object-cover transition duration-200 group-hover:scale-105 xl:h-[150px] xl:w-[110px]"
                             />
                           ) : (
-                            <div className="flex h-[150px] w-[110px] items-center justify-center rounded-xl bg-white/10 px-2 text-center text-[11px] text-white/40">
+                            <div className="flex h-[100px] w-[65px] items-center justify-center rounded-xl bg-white/10 px-2 text-center text-[11px] text-white/40 xl:h-[150px] xl:w-[110px]">
                               이미지 없음
                             </div>
                           )}
 
-                          <p className="mt-2 truncate text-[13px] font-bold">
+                          <p className="mt-2 truncate text-[12px] font-bold xl:text-[13px]">
                             {person.name}
                           </p>
 
-                          <p className="mt-1 truncate text-[11px] text-white/45">
+                          <p className="mt-1 truncate text-[10px] text-white/45 xl:text-[11px]">
                             {person.character
                               ? `${person.character} 역`
                               : "배역 정보 없음"}

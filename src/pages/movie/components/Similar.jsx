@@ -16,9 +16,11 @@ export default function Similar({ movies, genreName }) {
         xl:px-[150px] xl:py-[100px]
       "
     >
-      <h2 className="mb-[50px] text-3xl font-bold">비슷한 영화 추천</h2>
+      <h2 className="xl:mb-[50px] mb-[30px] xl:text-3xl text-xl font-bold">
+        비슷한 영화 추천
+      </h2>
 
-      <div className="grid grid-cols-4 gap-[28px]">
+      <div className="grid md:grid-cols-4 grid-cols-2 gap-[28px]">
         {movies.map((movie) => (
           <Link to={`/movie/${movie.id}`} key={movie.id}>
             <div className="group">
@@ -30,7 +32,7 @@ export default function Similar({ movies, genreName }) {
                 />
               </div>
 
-              <p className="mt-[12px] truncate text-[18px] font-semibold">
+              <p className="mt-[12px] xl:text-[18px] text-[12px] font-semibold">
                 {movie.title}
               </p>
             </div>
