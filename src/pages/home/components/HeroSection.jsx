@@ -37,7 +37,7 @@ export default function HeroSection({ movies }) {
         {top5Movie.map((movie) => (
           <SwiperSlide key={movie.id}>
             {({ isActive }) => (
-              <div className="relative w-full h-[900px] overflow-hidden">
+              <div className="relative w-full h-[100vh] overflow-hidden">
                 <img
                   src={OriginalURL + movie.backdrop_path}
                   alt={movie.title}
@@ -46,11 +46,11 @@ export default function HeroSection({ movies }) {
                   }`}
                 />
 
-                <div className="absolute z-10 inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
-                <div className="absolute z-10 inset-0 bg-gradient-to-b from-black via-black/20 to-transparent" />
+                <div className="absolute z-10 inset-0 bg-gradient-to-t from-black via-black/10 to-transparent" />
+                <div className="absolute z-10 inset-0 bg-gradient-to-b from-black via-black/10 to-transparent" />
 
-                <div className="absolute z-20 top-[400px] left-[150px]">
-                  <h2 className="mb-1.5 text-5xl font-bold">{movie.title}</h2>
+                <div className="absolute z-20 top-[50vh] left-[150px]">
+                  <h2 className="mb-1.5 text-6xl font-bold">{movie.title}</h2>
 
                   <p className="text-white/60">{movie.original_title}</p>
 
@@ -68,7 +68,7 @@ export default function HeroSection({ movies }) {
                   </div>
 
                   <Link to={`/movie/${movie.id}`}>
-                    <button className="mt-8 border px-8 py-2.5 rounded-xl hover:text-red-500 transition cursor-pointer">
+                    <button className="mt-8 border px-8 py-2.5 rounded-xl backdrop-blur-sm bg-white/20 hover:bg-white/40 transition cursor-pointer">
                       상세정보
                     </button>
                   </Link>

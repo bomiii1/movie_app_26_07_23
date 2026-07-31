@@ -1,7 +1,6 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Img500URL } from "../../../constants/imgBaseUrl";
 import { Link } from "react-router-dom";
-import { Scrollbar } from "swiper/modules";
 
 import "swiper/swiper.css";
 
@@ -35,17 +34,6 @@ export default function NowPlayingSection({ movies }) {
           </SwiperSlide>
         ))}
       </Swiper>
-
-      {/* <div>
-        poster_img_wrap
-        <div className="w-[300px] ">
-          <img src={Img500URL + movies[0].poster_path} alt={movies[0].title} />
-        </div>
-        description
-        <div>
-          <div className="text-[18px] mt-[5px]">{movies[0].title}</div>
-        </div>
-      </div> */}
     </div>
   );
 }
