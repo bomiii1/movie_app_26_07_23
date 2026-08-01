@@ -11,6 +11,8 @@ import { Img500URL, OriginalURL } from "../../constants/imgBaseUrl";
 import Loading from "../../components/Loading";
 import { CalendarDays, Clock3, Play, Star, TvMinimalPlay } from "lucide-react";
 import Similar from "./components/Similar";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
 
 export default function Movie() {
   const { id } = useParams();
@@ -82,339 +84,310 @@ export default function Movie() {
   const streamingProviders = krProviders?.flatrate || [];
 
   return (
-    <div>
-      <section className="relative pt-[80px] h-auto pt-[30px] pb-[50px] overflow-hidden">
+  <div>
+    <section
+      className="
+        relative overflow-hidden
+        pt-[64px]
+        md:pt-[72px]
+        lg:pt-[80px]
+      "
+    >
+      {/* 배경 이미지 */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: movie.backdrop_path
+            ? `url(${OriginalURL + movie.backdrop_path})`
+            : "none",
+        }}
+      />
+
+      <div className="absolute inset-0 bg-black/75" />
+
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-black/40" />
+
+      {/* 상세 콘텐츠 */}
+      <div
+        className="
+          relative z-10 flex min-h-screen flex-col gap-8
+          px-[20px] py-[40px]
+          md:flex-row md:items-start md:gap-10 md:px-[25px] md:py-[50px]
+          lg:gap-12 lg:px-[80px] lg:py-[70px]
+          xl:gap-15 xl:px-[150px]
+        "
+      >
+        {/* 포스터 영역 */}
         <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: movie.backdrop_path
-              ? `url(${OriginalURL + movie.backdrop_path})`
-              : "none",
-          }}
-        />
-
-        <div className="absolute inset-0 bg-black/70" />
-
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-black/30" />
-
-        <div
-          className="relative z-10 flex h-[100vh] items-start
-          xl:px-[150px]
-          lg:px-[80px]
-          md:px-[20px]
-          px-[20px]
-
-          gap-[30px]
-          xl:gap-15
-          lg:gap-12
-          md:gap-10
+          className="
+            w-full max-w-[230px] self-center
+            md:w-[32%] md:max-w-[300px] md:self-start
+            lg:max-w-[350px]
           "
         >
-          <div className="w-[40%]">
-            {movie.poster_path ? (
-              <img
-                src={Img500URL + movie.poster_path}
-                alt={movie.title}
-                className="w-full rounded-[5px] object-cover shadow-[0_25px_70px_rgba(0,0,0,0.65)]"
-              />
-            ) : (
-              <div className="flex aspect-[2/3] w-full items-center justify-center rounded-[5px] bg-white/10 text-white/50">
-                포스터 없음
-              </div>
-            )}
-
-            {trailer ? (
-              <a
-                href={`https://www.youtube.com/watch?v=${trailer.key}`}
-                target="_blank"
-                rel="noreferrer"
-                className="flex w-full items-center justify-center gap-2 rounded-[5px] bg-red-500 font-bold  text-white transition-all hover:bg-red-800 active:scale-95
-                xl:mt-5 
-                lg:mt-4
-                md:mt-3
-                mt-3
-                
-                xl:text-[16px]
-                lg:text-[14px]
-                md:text-[12px] 
-                text-[10px]
-                
-                xl:py-4 
-                lg:py-3
-                md:py-2
-                py-2"
-              >
-                <Play className="w-[20px] fill-white" />
-                예고편 보러 가기
-              </a>
-            ) : (
-              <button
-                type="button"
-                disabled
-                className="flex w-full items-center justify-center gap-[2px] rounded-xl bg-white/10 font-bold text-white/40
-                xl:mt-5 
-                lg:mt-4
-                md:mt-3
-                mt-3
-                
-                xl:text-[16px]
-                lg:text-[14px]
-                md:text-[12px] 
-                text-[8px]
-                
-                xl:py-4 
-                lg:py-3
-                md:py-2
-                py-2
-                
-                "
-              >
-                <Play className="w-[20px]" />
-                등록된 예고편 없음
-              </button>
-            )}
-
-            <section className="xl:mt-5 mt-2 pt-8">
-              <h2 className="flex items-center gap-2 xl:text-[20px] text-[10px] xl:font-bold font-semibold text-white">
-                <TvMinimalPlay className="text-white/70 xl:w-[30px] w-[15px]" />
-                시청 가능한 플랫폼
-              </h2>
-
-              {krProviders ? (
-                <div className="xl:mt-6 mt-1 space-y-7">
-                  {streamingProviders.length > 0 ? (
-                    <div className="flex flex-wrap gap-1">
-                      {streamingProviders.map((provider) => (
-                        <div
-                          key={provider.provider_id}
-                          className="flex flex-col items-center justify-center xl:gap-3 gap-1.5 xl:px-3 xl:py-3 px-1 py-1"
-                        >
-                          <img
-                            src={Img500URL + provider.logo_path}
-                            alt={provider.provider_name}
-                            className="xl:h-[42px] xl:w-[42px] h-[25px] w-[25px] rounded-full object-cover"
-                          />
-
-                          <span className="xl:text-[14px] text-[10px] font-semibold text-white">
-                            {provider.provider_name}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  ) : (
-                    <p className="mt-4 text-[14px] text-white/50">
-                      스트리밍 정보가 없습니다.
-                    </p>
-                  )}
-                </div>
-              ) : (
-                <p className="mt-4 text-[14px] text-white/50">
-                  정보가 없습니다.
-                </p>
-              )}
-            </section>
-          </div>
-
-          <div className="w-full min-w-0 text-white">
-            <div className="flex flex-wrap items-end">
-              <h1
-                className="font-bold
-              xl:text-5xl 
-              lg:text-3xl
-              text-[24px]
-              mr-3"
-              >
-                {movie.title}
-              </h1>
-
-              <p
-                className="
-              
-              text-white/60
-              
-               xl:text-[18px]
-              lg:text-[14px]
-              md:text-[12px] 
-              text-[10px]"
-              >
-                {movie.original_title}
-              </p>
+          {movie.poster_path ? (
+            <img
+              src={Img500URL + movie.poster_path}
+              alt={movie.title}
+              className="w-full rounded-[5px] object-cover shadow-[0_25px_70px_rgba(0,0,0,0.65)]"
+            />
+          ) : (
+            <div className="flex aspect-[2/3] w-full items-center justify-center rounded-[5px] bg-white/10 text-sm text-white/50">
+              포스터 없음
             </div>
+          )}
 
-            <p
-              className="w-full p-2 tracking-tight text-white/80
-
-              xl:mt-5
-              mt-[5px]
-
-              xl:text-[16px]
-              lg:text-[15px]
-              md:text-[14px] 
-              text-[12px]
-            
-              xl:leading-[27px]
-              lg:leading-[25px]
-              md:leading-[22px]
-              leading-[18px]"
+          {trailer ? (
+            <a
+              href={`https://www.youtube.com/watch?v=${trailer.key}`}
+              target="_blank"
+              rel="noreferrer"
+              className="
+                mt-3 flex w-full items-center justify-center gap-2
+                rounded-[5px] bg-red-500 py-3
+                text-sm font-bold text-white transition
+                hover:bg-red-800
+                md:mt-4
+                lg:mt-5 lg:py-4 lg:text-base
+              "
             >
-              {movie.overview}
-            </p>
-
-            <div
-              className=" flex flex-wrap gap-2
-            xl:mt-6
-            lg:mt-5
-            md:mt-3
-            mt-2"
+              <Play className="h-5 w-5 fill-white" />
+              예고편 보러 가기
+            </a>
+          ) : (
+            <button
+              type="button"
+              disabled
+              className="
+                mt-3 flex w-full items-center justify-center gap-2
+                rounded-[5px] bg-white/10 py-3
+                text-xs font-bold text-white/40
+                md:mt-4
+                lg:mt-5 lg:py-4 lg:text-sm
+              "
             >
-              {movie.genres?.map((genre) => (
-                <span
-                  key={genre.id}
-                  className="rounded-full border border-white/20 bg-white/10 px-4 py-2 text-white/85 backdrop-blur-sm
-                  xl:text-[13px]
-                  lg:text-[13px]
-                  md:text-[12px]
-                  text-[10px]
-                  "
-                >
-                  {genre.name}
-                </span>
-              ))}
-            </div>
+              <Play className="h-5 w-5" />
+              등록된 예고편 없음
+            </button>
+          )}
 
-            <div className="xl:mt-8 mt-4 grid w-full grid-cols-3 xl:gap-5 gap-2">
-              <div className="rounded-[5px] border border-white/10 bg-black/30 xl:px-5 px-3 xl:py-5 py-2 backdrop-blur-md">
-                <span className="text-[12px] uppercase tracking-[2px] text-white/50">
-                  평점
-                </span>
+          {/* 시청 플랫폼 */}
+          <div className="mt-7">
+            <h2 className="flex items-center gap-2 text-sm font-bold text-white lg:text-lg">
+              <TvMinimalPlay className="h-5 w-5 text-white/70 lg:h-6 lg:w-6" />
+              시청 가능한 플랫폼
+            </h2>
 
-                <span className="mt-3 flex items-center gap-2 xl:text-[22px] text-[14px] font-bold">
-                  <Star className="w-[20px] fill-yellow-400 text-yellow-400" />
-
-                  {movie.vote_average
-                    ? movie.vote_average.toFixed(1)
-                    : "정보 없음"}
-                </span>
-              </div>
-
-              <div className="rounded-xl border border-white/10 bg-black/30 xl:px-5 px-3 xl:py-5 py-2 backdrop-blur-md">
-                <span className="text-[12px] uppercase tracking-[2px] text-white/50">
-                  러닝타임
-                </span>
-
-                <span className="mt-3 flex items-center gap-2 xl:text-[22px] text-[14px] font-bold">
-                  <Clock3 className="w-[20px] text-white/70" />
-
-                  {movie.runtime ? `${movie.runtime}분` : "정보 없음"}
-                </span>
-              </div>
-
-              <div className="rounded-xl border border-white/10 bg-black/30 xl:px-5 px-3 xl:py-5 py-2 backdrop-blur-md">
-                <span className="text-[12px] uppercase tracking-[2px] text-white/50">
-                  개봉
-                </span>
-
-                <span className="mt-3 flex items-center gap-2 xl:text-[22px] text-[14px] font-bold">
-                  <CalendarDays className="w-[20px] text-white/70" />
-
-                  {movie.release_date || "정보 없음"}
-                </span>
-              </div>
-            </div>
-
-            {movie.tagline && (
-              <div className="xl:mt-8 mt-3 flex justify-center">
-                <p className="mt-2 xl:text-[28px] text-[15px] font-light italic text-white/85">
-                  “{movie.tagline}”
-                </p>
-              </div>
-            )}
-
-            <div className="xl:mt-10 mt-5 w-full border-t border-white/15 xl:pt-8 pt-4">
-              <div className="flex w-full flex-col xl:gap-8 gap-5 xl:flex-row xl:items-start xl:justify-end xl:gap-20">
-                {/* 감독 */}
-                <div>
-                  <h2 className="xl:mb-4 mb-3 text-[13px] font-semibold tracking-[3px] text-white/50">
-                    DIRECTOR
-                  </h2>
-
-                  {director ? (
-                    <Link to={`/profile/${director.id}`}>
-                      <div className="group flex xl:items-center items-end xl:gap-4 gap-3 overflow-hidden xl:flex-col xl:items-start">
-                        {director.profile_path ? (
-                          <img
-                            src={Img500URL + director.profile_path}
-                            alt={director.name}
-                            className="h-[100px] w-[65px] rounded-[5px] object-cover transition duration-200 group-hover:scale-105 xl:h-[150px] xl:w-[110px]"
-                          />
-                        ) : (
-                          <div className="flex h-[100px] w-[65px] items-center justify-center rounded-xl bg-white/10 px-2 text-center text-[11px] text-white/40 xl:h-[150px] xl:w-[110px]">
-                            이미지 없음
-                          </div>
-                        )}
-
-                        <div>
-                          <p className="text-[13px] font-bold">
-                            {director.name}
-                          </p>
-
-                          <p className="mt-2 text-[11px] text-white/45">
-                            Director
-                          </p>
-                        </div>
-                      </div>
-                    </Link>
-                  ) : (
-                    <p className="text-[13px] text-white/45">감독 정보 없음</p>
-                  )}
-                </div>
-
-                {/* 출연 */}
-                <div className="min-w-0 flex-1">
-                  <h2 className="mb-4 text-[13px] font-semibold tracking-[3px] text-white/50">
-                    CAST
-                  </h2>
-
-                  <div className="flex w-full gap-4  pb-4">
-                    {cast.map((person) => (
-                      <Link
-                        key={person.cast_id || person.id}
-                        to={`/profile/${person.id}`}
+            {krProviders ? (
+              <div className="mt-4">
+                {streamingProviders.length > 0 ? (
+                  <div className="flex flex-wrap gap-3">
+                    {streamingProviders.map((provider) => (
+                      <div
+                        key={provider.provider_id}
+                        className="flex flex-col items-center gap-2"
                       >
-                        <div className="group w-[65px] xl:w-[110px]">
-                          {person.profile_path ? (
-                            <img
-                              src={Img500URL + person.profile_path}
-                              alt={person.name}
-                              className="h-[100px] w-[65px] rounded-xl object-cover transition duration-200 group-hover:scale-105 xl:h-[150px] xl:w-[110px]"
-                            />
-                          ) : (
-                            <div className="flex h-[100px] w-[65px] items-center justify-center rounded-xl bg-white/10 px-2 text-center text-[11px] text-white/40 xl:h-[150px] xl:w-[110px]">
-                              이미지 없음
-                            </div>
-                          )}
+                        <img
+                          src={Img500URL + provider.logo_path}
+                          alt={provider.provider_name}
+                          className="h-[35px] w-[35px] rounded-full object-cover lg:h-[42px] lg:w-[42px]"
+                        />
 
-                          <p className="mt-2 truncate text-[12px] font-bold xl:text-[13px]">
-                            {person.name}
-                          </p>
-
-                          <p className="mt-1 truncate text-[10px] text-white/45 xl:text-[11px]">
-                            {person.character
-                              ? `${person.character} 역`
-                              : "배역 정보 없음"}
-                          </p>
-                        </div>
-                      </Link>
+                        <span className="max-w-[70px] truncate text-[10px] font-semibold text-white lg:text-xs">
+                          {provider.provider_name}
+                        </span>
+                      </div>
                     ))}
                   </div>
-                </div>
+                ) : (
+                  <p className="text-xs text-white/50">
+                    스트리밍 정보가 없습니다.
+                  </p>
+                )}
               </div>
+            ) : (
+              <p className="mt-4 text-xs text-white/50">
+                정보가 없습니다.
+              </p>
+            )}
+          </div>
+        </div>
+
+        {/* 영화 정보 영역 */}
+        <div className="w-full min-w-0 text-white">
+          <div className="flex flex-col gap-1 lg:flex-row lg:items-end lg:gap-3">
+            <h1 className="text-3xl font-bold md:text-4xl lg:text-5xl">
+              {movie.title}
+            </h1>
+
+            <p className="text-xs text-white/60 md:text-sm lg:text-base">
+              {movie.original_title}
+            </p>
+          </div>
+
+          {/* 줄거리 */}
+          <p className="mt-5 text-sm leading-6 text-white/80 md:text-[15px] md:leading-7 lg:text-base">
+            {movie.overview || "등록된 줄거리가 없습니다."}
+          </p>
+
+          {/* 장르 */}
+          <div className="mt-5 flex flex-wrap gap-2">
+            {movie.genres?.map((genre) => (
+              <span
+                key={genre.id}
+                className="
+                  rounded-full border border-white/20
+                  bg-white/10 px-3 py-1.5
+                  text-xs text-white/85 backdrop-blur-sm
+                  lg:px-4 lg:py-2 lg:text-[13px]
+                "
+              >
+                {genre.name}
+              </span>
+            ))}
+          </div>
+
+          {/* 평점, 러닝타임, 개봉일 */}
+          <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-3 lg:mt-8 lg:gap-5">
+            <div className="rounded-lg border border-white/10 bg-black/30 px-4 py-4 backdrop-blur-md lg:px-5 lg:py-5">
+              <span className="text-[10px] uppercase tracking-[2px] text-white/50 lg:text-xs">
+                평점
+              </span>
+
+              <span className="mt-2 flex items-center gap-2 text-base font-bold lg:mt-3 lg:text-xl">
+                <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+
+                {movie.vote_average
+                  ? movie.vote_average.toFixed(1)
+                  : "정보 없음"}
+              </span>
+            </div>
+
+            <div className="rounded-lg border border-white/10 bg-black/30 px-4 py-4 backdrop-blur-md lg:px-5 lg:py-5">
+              <span className="text-[10px] uppercase tracking-[2px] text-white/50 lg:text-xs">
+                러닝타임
+              </span>
+
+              <span className="mt-2 flex items-center gap-2 text-base font-bold lg:mt-3 lg:text-xl">
+                <Clock3 className="h-5 w-5 text-white/70" />
+
+                {movie.runtime ? `${movie.runtime}분` : "정보 없음"}
+              </span>
+            </div>
+
+            <div className="rounded-lg border border-white/10 bg-black/30 px-4 py-4 backdrop-blur-md lg:px-5 lg:py-5">
+              <span className="text-[10px] uppercase tracking-[2px] text-white/50 lg:text-xs">
+                개봉
+              </span>
+
+              <span className="mt-2 flex items-center gap-2 text-base font-bold lg:mt-3 lg:text-xl">
+                <CalendarDays className="h-5 w-5 text-white/70" />
+
+                {movie.release_date || "정보 없음"}
+              </span>
+            </div>
+          </div>
+
+          {/* 태그라인 */}
+          {movie.tagline && (
+            <div className="mt-6 flex justify-center lg:mt-8">
+              <p className="text-center text-lg font-light italic text-white/85 md:text-xl lg:text-2xl">
+                “{movie.tagline}”
+              </p>
+            </div>
+          )}
+
+          {/* 감독 및 출연진 */}
+          <div className="mt-8 border-t border-white/15 pt-6 lg:mt-10 lg:pt-8">
+            <div className="flex flex-col gap-8">
+              {/* 감독 */}
+              <div>
+                <h2 className="mb-4 text-xs font-semibold tracking-[3px] text-white/50">
+                  DIRECTOR
+                </h2>
+
+                {director ? (
+                  <Link to={`/profile/${director.id}`}>
+                    <div className="group flex items-center gap-4">
+                      {director.profile_path ? (
+                        <img
+                          src={Img500URL + director.profile_path}
+                          alt={director.name}
+                          className="h-[100px] w-[70px] rounded-[5px] object-cover transition group-hover:scale-105 lg:h-[130px] lg:w-[90px]"
+                        />
+                      ) : (
+                        <div className="flex h-[100px] w-[70px] items-center justify-center rounded-[5px] bg-white/10 px-2 text-center text-[10px] text-white/40 lg:h-[130px] lg:w-[90px]">
+                          이미지 없음
+                        </div>
+                      )}
+
+                      <div>
+                        <p className="text-sm font-bold">
+                          {director.name}
+                        </p>
+
+                        <p className="mt-2 text-xs text-white/45">
+                          Director
+                        </p>
+                      </div>
+                    </div>
+                  </Link>
+                ) : (
+                  <p className="text-sm text-white/45">
+                    감독 정보 없음
+                  </p>
+                )}
+              </div>
+
+              {/* 출연진 */}
+              {/* 출연진 */}
+<div className="min-w-0">
+  <h2 className="mb-4 text-xs font-semibold tracking-[3px] text-white/50">
+    CAST
+  </h2>
+
+  <Swiper slidesPerView={4.5} spaceBetween={15}>
+    {cast.map((person) => (
+      <SwiperSlide key={person.cast_id || person.id}>
+        <Link to={`/profile/${person.id}`}>
+          <div className="group pb-4">
+            {person.profile_path ? (
+              <img
+                src={Img500URL + person.profile_path}
+                alt={person.name}
+                className="aspect-[2/3] w-full rounded-[5px] object-cover transition group-hover:scale-105"
+              />
+            ) : (
+              <div className="flex aspect-[2/3] w-full items-center justify-center rounded-[5px] bg-white/10 px-2 text-center text-[10px] text-white/40">
+                이미지 없음
+              </div>
+            )}
+
+            <p className="mt-2 truncate text-xs font-bold lg:text-[13px]">
+              {person.name}
+            </p>
+
+            <p className="mt-1 truncate text-[10px] text-white/45 lg:text-[11px]">
+              {person.character
+                ? `${person.character} 역`
+                : "배역 정보 없음"}
+            </p>
+          </div>
+        </Link>
+      </SwiperSlide>
+    ))}
+  </Swiper>
+</div>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <Similar movies={genreMovies} genreName={movie.genres?.[0]?.name} />
-    </div>
-  );
+    <Similar
+      movies={genreMovies}
+      genreName={movie.genres?.[0]?.name}
+    />
+  </div>
+);
 }
