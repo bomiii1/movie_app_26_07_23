@@ -49,3 +49,8 @@ export const getMoviesByGenre = (genreId) =>
     sort_by: "popularity.desc",
     include_adult: false,
   });
+export const getSearch = (keyword) =>
+  fetchMovie("search/movie", {
+    query: keyword,
+    include_adult: false,
+  });
