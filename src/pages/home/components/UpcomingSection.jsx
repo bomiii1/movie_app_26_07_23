@@ -18,7 +18,28 @@ export default function UpcomingSection({ movies }) {
         개봉 예정작
       </h2>
 
-      <Swiper slidesPerView={4.7} spaceBetween={20}>
+      <Swiper
+  slidesPerView={2.2}
+  spaceBetween={12}
+  breakpoints={{
+    640: {
+      slidesPerView: 3.2,
+      spaceBetween: 15,
+    },
+    768: {
+      slidesPerView: 4.2,
+      spaceBetween: 18,
+    },
+    1024: {
+      slidesPerView: 4.7,
+      spaceBetween: 20,
+    },
+    1280: {
+      slidesPerView: 5.7,
+      spaceBetween: 20,
+    },
+  }}
+>
         {movies?.map((movie) => (
           <SwiperSlide key={movie.id}>
             <Link to={`/movie/${movie.id}`}>

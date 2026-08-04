@@ -16,15 +16,34 @@ export default function Top10Section({ movies }) {
         xl:px-[150px]
       "
     >
-      <div className="mb-[30px] flex items-center gap-3 md:mb-[50px]">
-        <div className="h-7 w-1 rounded-full bg-red-600" />
+     <div className="mb-[30px] md:mb-[50px]">
+    <h2 className="text-2xl font-bold md:text-3xl">
+      오늘의 TOP 10
+    </h2>
+  </div>
 
-        <h2 className="text-2xl font-bold md:text-3xl">
-          오늘의 TOP 10
-        </h2>
-      </div>
-
-      <Swiper slidesPerView={4.7} spaceBetween={20}>
+      <Swiper
+  slidesPerView={2.2}
+  spaceBetween={12}
+  breakpoints={{
+    640: {
+      slidesPerView: 3.2,
+      spaceBetween: 15,
+    },
+    768: {
+      slidesPerView: 4.2,
+      spaceBetween: 18,
+    },
+    1024: {
+      slidesPerView: 4.7,
+      spaceBetween: 20,
+    },
+    1280: {
+      slidesPerView: 5.7,
+      spaceBetween: 20,
+    },
+  }}
+>
         {top10Movies?.map((movie, index) => (
           <SwiperSlide key={movie.id}>
             <Link to={`/movie/${movie.id}`}>
