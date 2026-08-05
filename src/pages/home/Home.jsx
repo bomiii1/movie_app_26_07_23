@@ -6,15 +6,15 @@ import NowPlayingSection from "./components/NowPlayingSection";
 import Top10Section from "./components/Top10Section";
 import UpcomingSection from "./components/UpcomingSection";
 
-import {
-  getNowPlaying,
-  getPopular,
-  getUpcoming,
-} from "../../api/MovieApi";
+import { getNowPlaying, getPopular, getUpcoming } from "../../api/MovieApi";
 
 export default function Home() {
   const [movieData, setMovieData] = useState({});
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   useEffect(() => {
     const getMovieData = async () => {

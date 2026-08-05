@@ -77,7 +77,7 @@ export default function HeroSection({ movies }) {
                     {movie.title}
                   </h2>
 
-                  <p className="text-sm text-white/60 md:text-base">
+                  <p className="text-sm text-white/60 md:16px">
                     {movie.original_title}
                   </p>
 
@@ -85,7 +85,7 @@ export default function HeroSection({ movies }) {
                     className="
                       mt-4 flex flex-wrap items-center gap-3
                       text-sm
-                      md:mt-6 md:gap-5 md:text-base
+                      md:mt-6 md:gap-5 md:16px
                     "
                   >
                     <p>
@@ -107,7 +107,7 @@ export default function HeroSection({ movies }) {
                         bg-white/20 px-6 py-2 text-sm
                         backdrop-blur-sm transition
                         hover:bg-white/40
-                        md:mt-8 md:px-8 md:py-2.5 md:text-base
+                        md:mt-8 md:px-8 md:py-2.5 md:16px
                       "
                     >
                       상세정보

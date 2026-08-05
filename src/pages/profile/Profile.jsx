@@ -2,10 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { CalendarDays, MapPin, UserRound } from "lucide-react";
 
-import {
-  getProfile,
-  getProfileMovies,
-} from "../../api/MovieApi";
+import { getProfile, getProfileMovies } from "../../api/MovieApi";
 
 import { Img500URL } from "../../constants/imgBaseUrl";
 import Loading from "../../components/Loading";
@@ -123,9 +120,7 @@ export default function Profile() {
                 <CalendarDays className="h-5 w-5 shrink-0 text-white/50" />
 
                 <div>
-                  <p className="text-[10px] text-white/40">
-                    생년월일
-                  </p>
+                  <p className="text-[10px] text-white/40">생년월일</p>
 
                   <p className="mt-1 text-xs md:text-sm">
                     {profile.birthday || "정보 없음"}
@@ -137,13 +132,9 @@ export default function Profile() {
                 <UserRound className="h-5 w-5 shrink-0 text-white/50" />
 
                 <div>
-                  <p className="text-[10px] text-white/40">
-                    주요 활동
-                  </p>
+                  <p className="text-[10px] text-white/40">주요 활동</p>
 
-                  <p className="mt-1 text-xs md:text-sm">
-                    {department}
-                  </p>
+                  <p className="mt-1 text-xs md:text-sm">{department}</p>
                 </div>
               </div>
 
@@ -151,9 +142,7 @@ export default function Profile() {
                 <MapPin className="h-5 w-5 shrink-0 text-white/50" />
 
                 <div className="min-w-0">
-                  <p className="text-[10px] text-white/40">
-                    출생지
-                  </p>
+                  <p className="text-[10px] text-white/40">출생지</p>
 
                   <p className="mt-1 text-xs md:text-sm">
                     {profile.place_of_birth || "정보 없음"}
@@ -193,7 +182,7 @@ export default function Profile() {
                   />
                 </div>
 
-                <p className="mt-2 truncate text-sm font-bold transition group-hover:text-red-500 md:text-base">
+                <p className="mt-2 truncate text-sm font-bold transition group-hover:text-red-500 md:16px">
                   {movie.title}
                 </p>
 

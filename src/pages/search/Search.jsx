@@ -1,6 +1,6 @@
 import { SearchCheck } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { getSearch } from "../../api/MovieApi";
 import { Img500URL } from "../../constants/imgBaseUrl";
@@ -18,6 +18,10 @@ export default function Search() {
     setData(searchData.results);
   };
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div
       className="
@@ -27,14 +31,9 @@ export default function Search() {
         xl:px-[150px]
       "
     >
-      <h1 className="text-2xl font-bold md:text-3xl">
-        영화 검색
-      </h1>
+      <h1 className="text-2xl font-bold md:text-3xl">영화 검색</h1>
 
-      <form
-        onSubmit={onSubmit}
-        className="relative mt-5 flex w-full"
-      >
+      <form onSubmit={onSubmit} className="relative mt-5 flex w-full">
         <input
           type="text"
           placeholder="영화를 검색해보세요."
@@ -84,14 +83,14 @@ export default function Search() {
                 </div>
               )}
 
-              <h3 className="mt-2 truncate text-sm font-semibold md:text-base">
+              <h3 className="mt-2 truncate text-sm font-semibold md:16px">
                 {movie.title}
               </h3>
             </Link>
           ))}
         </div>
       ) : (
-        <div className="flex h-[400px] items-center justify-center text-sm text-white/50 md:text-base">
+        <div className="flex h-[400px] items-center justify-center text-sm text-white/50 md:16px">
           검색 결과가 없습니다.
         </div>
       )}

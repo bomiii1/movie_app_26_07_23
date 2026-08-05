@@ -54,13 +54,12 @@ export const getSearch = (keyword) =>
     query: keyword,
     include_adult: false,
   });
-  export const getTopRatedPage = (page) =>
+export const getTopRatedPage = (page) =>
   fetchMovie("movie/top_rated", {
     page,
   });
 
-  export const getProfile = (id) =>
-  fetchMovie(`person/${id}`);
+export const getProfile = (id) => fetchMovie(`person/${id}`);
 
 export const getProfileMovies = (id) =>
   fetchMovie(`person/${id}/movie_credits`);

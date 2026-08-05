@@ -48,8 +48,6 @@ export default function Recommend() {
   }, []);
 
   const getRandomMovie = () => {
-    if (!swiper || rolling) return;
-
     setRolling(true);
     setRandomMovie(null);
 
@@ -111,16 +109,14 @@ export default function Recommend() {
       "
     >
       <div className="text-center">
-        <p className="text-xs font-bold text-red-500 sm:text-sm">
-          RANDOM MOVIE
-        </p>
+        <p className="text-xs font-bold text-red-500 sm:text-sm">BOM-PICK!</p>
 
         <h1 className="mt-2 text-xl font-bold sm:text-2xl md:text-3xl">
-          오늘 볼 영화를 골라드릴게요
+          오늘의 추천영화
         </h1>
 
         <p className="mt-2 text-xs text-white/50 sm:text-sm">
-          TOP 50 영화 중 하나를 무작위로 선택합니다.
+          인기영화 중 하나를 랜덤으로 선택합니다.
         </p>
       </div>
 
@@ -173,7 +169,7 @@ export default function Recommend() {
                     </div>
                   )}
 
-                  <p className="mt-3 truncate text-center text-sm font-bold sm:text-base">
+                  <p className="mt-3 truncate text-center text-sm font-bold sm:16px">
                     {movie.title}
                   </p>
                 </div>
@@ -194,7 +190,7 @@ export default function Recommend() {
             text-sm font-bold text-white transition
             hover:bg-red-800
             disabled:cursor-not-allowed disabled:bg-gray-600
-            sm:px-7 sm:text-base
+            sm:px-7 sm:16px
           "
         >
           <Dices className="h-5 w-5" />
@@ -240,7 +236,7 @@ export default function Recommend() {
             </p>
 
             <div className="mt-5 flex items-center justify-center gap-4 md:justify-start">
-              <p className="flex items-center gap-1 text-sm font-bold sm:text-base">
+              <p className="flex items-center gap-1 text-sm font-bold sm:16px">
                 <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
 
                 {randomMovie.vote_average
@@ -250,7 +246,7 @@ export default function Recommend() {
 
               <div className="h-[16px] w-[1px] bg-white/30" />
 
-              <p className="text-sm sm:text-base">
+              <p className="text-sm sm:16px">
                 {randomMovie.release_date
                   ? randomMovie.release_date.slice(0, 4)
                   : "정보 없음"}
@@ -270,7 +266,7 @@ export default function Recommend() {
                 ))}
             </div>
 
-            <p className="mt-5 w-full break-words text-sm leading-6 text-white/70 sm:text-base">
+            <p className="mt-5 w-full break-words text-sm leading-6 text-white/70 sm:16px">
               {randomMovie.overview
                 ? randomMovie.overview.length > 100
                   ? randomMovie.overview.slice(0, 100) + "..."
@@ -285,7 +281,7 @@ export default function Recommend() {
                 rounded-lg border border-white/30
                 px-6 py-3 text-sm font-bold transition
                 hover:bg-white/10
-                sm:inline-flex sm:w-auto sm:text-base
+                sm:inline-flex sm:w-auto sm:16px
               "
             >
               <Info className="h-5 w-5" />
