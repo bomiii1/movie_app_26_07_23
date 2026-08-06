@@ -53,10 +53,9 @@ export default function HeroSection({ movies }) {
                   }`}
                 />
 
-                <div className="absolute inset-0 z-10 bg-gradient-to-t from-black via-black/10 to-transparent" />
+                <div className="absolute top-0 left-0 z-10 w-full h-full bg-gradient-to-t from-black via-black/10 to-transparent" />
 
-                <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/50 via-transparent to-transparent" />
-
+                <div className="absolute top-0 left-0 z-10 w-full h-full bg-gradient-to-b from-black/50 via-transparent to-transparent" />
                 <div
                   className="
                     absolute bottom-[70px] left-[20px] z-20

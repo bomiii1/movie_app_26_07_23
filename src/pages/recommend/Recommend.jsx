@@ -2,17 +2,19 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Dices, Info, Star } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
+
 import { getTopRatedPage } from "../../api/MovieApi";
 import { Img500URL } from "../../constants/imgBaseUrl";
 import { GENRES } from "../../constants/genres";
 import Loading from "../../components/Loading";
 import PageTitle from "../../components/PageTitle";
 
+import "swiper/css";
+
 export default function Recommend() {
   const [topMovies, setTopMovies] = useState([]);
-  const [randomMovie, setRandomMovie] = useState();
-  const [swiper, setSwiper] = useState();
+  const [randomMovie, setRandomMovie] = useState(null);
+  const [swiper, setSwiper] = useState(null);
   const [loading, setLoading] = useState(true);
   const [rolling, setRolling] = useState(false);
 
@@ -47,6 +49,8 @@ export default function Recommend() {
   }, []);
 
   const getRandomMovie = () => {
+    if (!swiper || rolling) return;
+
     setRolling(true);
     setRandomMovie(null);
 
@@ -90,7 +94,7 @@ export default function Recommend() {
 
   if (topMovies.length === 0) {
     return (
-      <div className="flex min-h-screen items-center justify-center">
+      <div className="flex h-screen items-center justify-center">
         영화를 불러오지 못했습니다.
       </div>
     );
@@ -98,19 +102,21 @@ export default function Recommend() {
 
   return (
     <>
-      <PageTitle title={"랜덤"} />
+      <PageTitle title="랜덤" />
+
       <main
         className="
-        min-h-screen overflow-hidden
-        px-[15px] pb-[60px] pt-[90px]
-        sm:px-[20px] sm:pt-[100px]
-        md:px-[30px] md:pt-[120px]
-        lg:px-[80px]
-        xl:px-[150px]
-      "
+          overflow-hidden px-[15px] pb-[60px] pt-[90px]
+          sm:px-[20px] sm:pt-[100px]
+          md:px-[30px] md:pt-[120px]
+          lg:px-[80px]
+          xl:px-[150px]
+        "
       >
         <div className="text-center">
-          <p className="text-xs font-bold text-red-500 sm:text-sm">BOM-PICK!</p>
+          <p className="text-xs font-bold text-red-500 sm:text-sm">
+            BOM-PICK!
+          </p>
 
           <h1 className="mt-2 text-xl font-bold sm:text-2xl md:text-3xl">
             오늘의 추천영화
@@ -121,7 +127,7 @@ export default function Recommend() {
           </p>
         </div>
 
-        <div className="relative mx-auto mt-[30px] max-w-[1200px] sm:mt-[40px]">
+        <div className="relative mt-[30px] sm:mt-[40px]">
           <Swiper
             slidesPerView="auto"
             spaceBetween={15}
@@ -136,8 +142,7 @@ export default function Recommend() {
               <SwiperSlide
                 key={movie.id}
                 style={{
-                  width: "75vw",
-                  maxWidth: "260px",
+                  width: "260px",
                 }}
               >
                 {({ isActive }) => (
@@ -154,23 +159,23 @@ export default function Recommend() {
                         alt={movie.title}
                         className={
                           isActive
-                            ? "aspect-[2/3] w-full rounded-lg border-2 border-red-500 object-cover"
-                            : "aspect-[2/3] w-full rounded-lg border-2 border-transparent object-cover"
+                            ? "w-full rounded-lg border-2 border-red-500 object-cover"
+                            : "w-full rounded-lg border-2 border-transparent object-cover"
                         }
                       />
                     ) : (
                       <div
                         className={
                           isActive
-                            ? "flex aspect-[2/3] w-full items-center justify-center rounded-lg border-2 border-red-500 bg-white/10 text-sm text-white/50"
-                            : "flex aspect-[2/3] w-full items-center justify-center rounded-lg border-2 border-transparent bg-white/10 text-sm text-white/50"
+                            ? "flex h-[390px] w-full items-center justify-center rounded-lg border-2 border-red-500 bg-white/10 text-sm text-white/50"
+                            : "flex h-[390px] w-full items-center justify-center rounded-lg border-2 border-transparent bg-white/10 text-sm text-white/50"
                         }
                       >
                         이미지 없음
                       </div>
                     )}
 
-                    <p className="mt-3 truncate text-center text-sm font-bold sm:16px">
+                    <p className="mt-3 text-center text-sm font-bold sm:text-[16px]">
                       {movie.title}
                     </p>
                   </div>
@@ -186,13 +191,13 @@ export default function Recommend() {
             onClick={getRandomMovie}
             disabled={rolling}
             className="
-            flex items-center justify-center gap-2
-            rounded-lg bg-red-500 px-5 py-3
-            text-sm font-bold text-white transition
-            hover:bg-red-800
-            disabled:cursor-not-allowed disabled:bg-gray-600
-            sm:px-7 sm:16px
-          "
+              flex items-center justify-center gap-2
+              rounded-lg bg-red-500 px-5 py-3
+              text-sm font-bold text-white transition
+              hover:bg-red-800
+              disabled:cursor-not-allowed disabled:bg-gray-600
+              sm:px-7 sm:text-[16px]
+            "
           >
             <Dices className="h-5 w-5" />
 
@@ -203,13 +208,14 @@ export default function Recommend() {
         {randomMovie && (
           <section
             className="
-            mx-auto mt-[50px] flex w-full max-w-[850px]
-            flex-col gap-7 border-t border-white/15 pt-[40px]
-            md:mt-[60px] md:flex-row md:items-start
-            md:gap-10 md:pt-[50px]
-          "
+              mx-auto mt-[50px] flex w-full
+              flex-col gap-7 border-t border-white/15 pt-[40px]
+              md:mt-[60px] md:flex-row md:items-start
+              md:gap-10 md:pt-[50px]
+              lg:w-[850px]
+            "
           >
-            <div className="mx-auto w-[90%] max-w-[320px] md:w-[35%] md:max-w-[220px]">
+            <div className="mx-auto w-[280px] md:mx-0 md:w-[220px]">
               {randomMovie.poster_path ? (
                 <img
                   src={Img500URL + randomMovie.poster_path}
@@ -217,13 +223,13 @@ export default function Recommend() {
                   className="w-full rounded-lg object-cover"
                 />
               ) : (
-                <div className="flex aspect-[2/3] items-center justify-center rounded-lg bg-white/10 text-sm text-white/50">
+                <div className="flex h-[420px] w-[280px] items-center justify-center rounded-lg bg-white/10 text-sm text-white/50 md:h-[330px] md:w-[220px]">
                   이미지 없음
                 </div>
               )}
             </div>
 
-            <div className="mx-auto w-[90%] max-w-[320px] text-center md:mx-0 md:w-[65%] md:max-w-none md:text-left">
+            <div className="w-full text-center md:w-[65%] md:text-left">
               <p className="text-xs font-bold text-red-500 sm:text-sm">
                 오늘의 영화 추천
               </p>
@@ -237,7 +243,7 @@ export default function Recommend() {
               </p>
 
               <div className="mt-5 flex items-center justify-center gap-4 md:justify-start">
-                <p className="flex items-center gap-1 text-sm font-bold sm:16px">
+                <p className="flex items-center gap-1 text-sm font-bold sm:text-[16px]">
                   <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
 
                   {randomMovie.vote_average
@@ -247,7 +253,7 @@ export default function Recommend() {
 
                 <div className="h-[16px] w-[1px] bg-white/30" />
 
-                <p className="text-sm sm:16px">
+                <p className="text-sm sm:text-[16px]">
                   {randomMovie.release_date
                     ? randomMovie.release_date.slice(0, 4)
                     : "정보 없음"}
@@ -267,7 +273,7 @@ export default function Recommend() {
                   ))}
               </div>
 
-              <p className="mt-5 w-full break-words text-sm leading-6 text-white/70 sm:16px">
+              <p className="mt-5 w-full text-sm leading-6 text-white/70 sm:text-[16px]">
                 {randomMovie.overview
                   ? randomMovie.overview.length > 100
                     ? randomMovie.overview.slice(0, 100) + "..."
@@ -278,12 +284,12 @@ export default function Recommend() {
               <Link
                 to={`/movie/${randomMovie.id}`}
                 className="
-                mt-7 flex w-full items-center justify-center gap-2
-                rounded-lg border border-white/30
-                px-6 py-3 text-sm font-bold transition
-                hover:bg-white/10
-                sm:inline-flex sm:w-auto sm:16px
-              "
+                  mt-7 flex w-full items-center justify-center gap-2
+                  rounded-lg border border-white/30
+                  px-6 py-3 text-sm font-bold transition
+                  hover:bg-white/10
+                  md:w-[160px] md:text-[16px]
+                "
               >
                 <Info className="h-5 w-5" />
                 상세정보

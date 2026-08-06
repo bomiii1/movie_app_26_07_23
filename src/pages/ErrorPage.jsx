@@ -1,15 +1,17 @@
 import { Home, SearchAlert } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
+
 import PageTitle from "../components/PageTitle";
 
 export default function ErrorPage() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
   return (
     <>
-      <PageTitle title={"ERROR"} />
+      <PageTitle title="ERROR" />
 
       <div className="flex min-h-screen items-center justify-center px-5 text-white">
         <div className="flex w-full max-w-2xl flex-col items-center text-center">
@@ -21,7 +23,7 @@ export default function ErrorPage() {
             PAGE NOT FOUND
           </p>
 
-          <p className="text-[100px] font-black leading-none text-white sm:text-[140px] md:text-[180px]">
+          <p className="text-[100px] font-black text-white sm:text-[140px] md:text-[180px]">
             404
           </p>
 
@@ -29,7 +31,7 @@ export default function ErrorPage() {
             페이지를 찾을 수 없습니다
           </p>
 
-          <p className="mt-4 text-sm leading-6 text-gray-400 sm:16px">
+          <p className="mt-4 text-sm text-gray-400 sm:text-[16px]">
             요청하신 페이지가 존재하지 않거나 이동되었을 수 있습니다.
             <br className="hidden sm:block" />
             주소를 다시 확인하거나 홈으로 이동해 주세요.
@@ -37,7 +39,13 @@ export default function ErrorPage() {
 
           <Link
             to="/"
-            className="mt-7 flex w-full items-center justify-center gap-2 rounded-xl bg-red-600 px-8 py-3.5 text-sm font-bold text-white transition hover:bg-red-800 sm:mt-8 sm:w-auto sm:px-10 sm:py-4 sm:16px"
+            className="
+              mt-7 flex w-full items-center justify-center gap-2
+              rounded-xl bg-red-600 px-8 py-3.5
+              text-sm font-bold text-white transition
+              hover:bg-red-800
+              sm:mt-8 sm:w-auto sm:px-10 sm:py-4 sm:text-[16px]
+            "
           >
             <Home className="h-5 w-5" />
             홈으로 돌아가기

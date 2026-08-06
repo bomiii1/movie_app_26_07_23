@@ -8,9 +8,9 @@ export default function UpcomingSection({ movies }) {
   return (
     <section
       className="
-        my-[50px] px-[20px]
-        md:my-[70px] md:px-[25px]
-        lg:my-[100px] lg:px-[80px]
+        mt-[50px] mb-[50px] px-[20px]
+        md:mt-[70px] md:mb-[70px] md:px-[25px]
+        lg:mt-[100px] lg:mb-[100px] lg:px-[80px]
         xl:px-[150px]
       "
     >
@@ -48,11 +48,11 @@ export default function UpcomingSection({ movies }) {
                   <img
                     src={Img500URL + movie.poster_path}
                     alt={movie.title}
-                    className="w-full aspect-[2/3] object-cover hover:scale-105 transition duration-300"
+                    className="w-full object-cover transition duration-300 hover:scale-105"
                   />
                 </div>
 
-                <p className="mt-[10px] truncate text-[15px] md:text-[18px]">
+                <p className="mt-[10px] text-[15px] md:text-[18px]">
                   {movie.title}
                 </p>
 

@@ -17,7 +17,9 @@ export default function Top10Section({ movies }) {
       "
     >
       <div className="mb-[30px] md:mb-[50px]">
-        <h2 className="text-2xl font-bold md:text-3xl">오늘의 TOP 10</h2>
+        <h2 className="text-2xl font-bold md:text-3xl">
+          오늘의 TOP 10
+        </h2>
       </div>
 
       <Swiper
@@ -50,17 +52,17 @@ export default function Top10Section({ movies }) {
                   <img
                     src={Img500URL + movie.poster_path}
                     alt={movie.title}
-                    className="w-full aspect-[2/3] object-cover transition duration-300 group-hover:scale-105"
+                    className="w-full object-cover transition duration-300 group-hover:scale-105"
                   />
 
-                  <div className="absolute inset-x-0 bottom-0 h-[45%] bg-gradient-to-t hover:from-black via-black/50 to-transparent" />
+                  <div className="absolute left-0 bottom-0 w-full h-[45%] bg-gradient-to-t from-black via-black/50 to-transparent" />
 
                   <p className="absolute bottom-1 left-3 text-[55px] font-black leading-none text-white transition duration-300 group-hover:text-red-600 md:text-[70px]">
                     {index + 1}
                   </p>
                 </div>
 
-                <p className="mt-[10px] truncate text-[15px] md:text-[18px]">
+                <p className="mt-[10px] text-[15px] md:text-[18px]">
                   {movie.title}
                 </p>
               </div>
