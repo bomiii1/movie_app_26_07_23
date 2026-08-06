@@ -157,12 +157,13 @@ export default function Movie() {
             className="
               relative z-10 flex flex-col items-center gap-8
               px-[20px] py-[40px]
-              md:flex-row md:items-start md:gap-10 md:px-[25px] md:py-[50px]
+              md:flex-row md:items-start md:justify-between
+              md:gap-10 md:px-[25px] md:py-[50px]
               lg:gap-12 lg:px-[80px] lg:py-[70px]
-              xl:gap-15 xl:px-[150px]
+              xl:px-[150px]
             "
           >
-            <div className="w-[230px] md:w-[300px] lg:w-[350px]">
+            <div className="w-[230px] md:w-[30%] lg:w-[28%]">
               {movie.poster_path ? (
                 <img
                   src={Img500URL + movie.poster_path}
@@ -170,7 +171,7 @@ export default function Movie() {
                   className="w-full rounded-[5px] object-cover"
                 />
               ) : (
-                <div className="flex h-[345px] w-full items-center justify-center rounded-[5px] bg-white/10 text-sm text-white/50 md:h-[450px] lg:h-[525px]">
+                <div className="flex h-[345px] w-full items-center justify-center rounded-[5px] bg-white/10 text-sm text-white/50 md:h-[400px] lg:h-[480px]">
                   포스터 없음
                 </div>
               )}
@@ -230,7 +231,7 @@ export default function Movie() {
                               className="h-[35px] w-[35px] rounded-full object-cover lg:h-[42px] lg:w-[42px]"
                             />
 
-                            <span className="max-w-[70px] text-center text-[10px] font-semibold text-white lg:text-xs">
+                            <span className="w-[70px] text-center text-[10px] font-semibold text-white lg:text-xs">
                               {provider.provider_name}
                             </span>
                           </div>
@@ -250,7 +251,7 @@ export default function Movie() {
               </div>
             </div>
 
-            <div className="w-full text-white">
+            <div className="w-full text-white md:w-[62%] lg:w-[65%]">
               <div className="flex flex-col gap-1 lg:flex-row lg:items-end lg:gap-3">
                 <h1 className="text-3xl font-bold md:text-4xl lg:text-5xl">
                   {movie.title}
@@ -261,7 +262,7 @@ export default function Movie() {
                 </p>
               </div>
 
-              <p className="mt-5 text-sm leading-6 text-white/80 md:text-[15px] md:leading-7 lg:text-[16px]">
+              <p className="mt-5 text-sm text-white/80 md:text-[15px] lg:text-[16px]">
                 {movie.overview || "등록된 줄거리가 없습니다."}
               </p>
 
@@ -376,7 +377,20 @@ export default function Movie() {
                       CAST
                     </h2>
 
-                    <Swiper slidesPerView={4.5} spaceBetween={15}>
+                    <Swiper
+                      slidesPerView={3.2}
+                      spaceBetween={12}
+                      breakpoints={{
+                        768: {
+                          slidesPerView: 4.2,
+                          spaceBetween: 15,
+                        },
+                        1024: {
+                          slidesPerView: 5.2,
+                          spaceBetween: 15,
+                        },
+                      }}
+                    >
                       {cast.map((person) => (
                         <SwiperSlide key={person.cast_id || person.id}>
                           <Link to={`/profile/${person.id}`}>
@@ -385,10 +399,10 @@ export default function Movie() {
                                 <img
                                   src={Img500URL + person.profile_path}
                                   alt={person.name}
-                                  className="h-[100px] w-full rounded-[5px] object-cover transition hover:scale-105 md:h-[130px] lg:h-[160px]"
+                                  className="w-full rounded-[5px] object-cover transition hover:scale-105"
                                 />
                               ) : (
-                                <div className="flex h-[100px] w-full items-center justify-center rounded-[5px] bg-white/10 px-2 text-center text-[10px] text-white/40 md:h-[130px] lg:h-[160px]">
+                                <div className="flex h-[120px] w-full items-center justify-center rounded-[5px] bg-white/10 px-2 text-center text-[10px] text-white/40 md:h-[140px] lg:h-[160px]">
                                   이미지 없음
                                 </div>
                               )}
