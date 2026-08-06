@@ -3,11 +3,7 @@ import { Link } from "react-router-dom";
 
 import "swiper/css";
 
-export default function Similar({ movies, genreName }) {
-  if (!movies || movies.length === 0) {
-    return null;
-  }
-
+export default function Similar({ movies }) {
   return (
     <section
       className="

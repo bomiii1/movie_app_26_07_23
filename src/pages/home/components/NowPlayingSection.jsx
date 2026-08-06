@@ -20,36 +20,36 @@ export default function NowPlayingSection({ movies }) {
       </h2>
 
       <Swiper
-  slidesPerView={2.2}
-  spaceBetween={12}
-  breakpoints={{
-    640: {
-      slidesPerView: 3.2,
-      spaceBetween: 15,
-    },
-    768: {
-      slidesPerView: 4.2,
-      spaceBetween: 18,
-    },
-    1024: {
-      slidesPerView: 4.7,
-      spaceBetween: 20,
-    },
-    1280: {
-      slidesPerView: 5.7,
-      spaceBetween: 20,
-    },
-  }}
->
+        slidesPerView={2.2}
+        spaceBetween={12}
+        breakpoints={{
+          640: {
+            slidesPerView: 3.2,
+            spaceBetween: 15,
+          },
+          768: {
+            slidesPerView: 4.2,
+            spaceBetween: 18,
+          },
+          1024: {
+            slidesPerView: 4.7,
+            spaceBetween: 20,
+          },
+          1280: {
+            slidesPerView: 5.7,
+            spaceBetween: 20,
+          },
+        }}
+      >
         {movies?.map((movie) => (
           <SwiperSlide key={movie.id}>
             <Link to={`/movie/${movie.id}`}>
               <div>
-                <div className="w-full overflow-hidden">
+                <div className="w-full rounded-lg overflow-hidden">
                   <img
                     src={Img500URL + movie.poster_path}
                     alt={movie.title}
-                    className="w-full object-cover"
+                    className="aspect-[2/3] w-full rounded-lg object-cover hover:scale-105 transition duration-300"
                   />
                 </div>
 

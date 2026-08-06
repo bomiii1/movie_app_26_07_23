@@ -1,4 +1,4 @@
-import { SearchCheck } from "lucide-react";
+import { SearchIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
@@ -54,10 +54,10 @@ export default function Search() {
             className="
             absolute right-[10px] top-[10px]
             cursor-pointer text-white/50
-            hover:text-red-500
+            hover:text-white/100
           "
           >
-            <SearchCheck />
+            <SearchIcon />
           </button>
         </form>
 

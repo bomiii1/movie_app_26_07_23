@@ -98,7 +98,7 @@ export default function Recommend() {
 
   return (
     <>
-      <PageTitle title={"랜덤추천"} />
+      <PageTitle title={"랜덤"} />
       <main
         className="
         min-h-screen overflow-hidden
