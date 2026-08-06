@@ -7,6 +7,7 @@ import Top10Section from "./components/Top10Section";
 import UpcomingSection from "./components/UpcomingSection";
 
 import { getNowPlaying, getPopular, getUpcoming } from "../../api/MovieApi";
+import PageTitle from "../../components/PageTitle";
 
 export default function Home() {
   const [movieData, setMovieData] = useState({});
@@ -45,14 +46,18 @@ export default function Home() {
   }
 
   return (
-    <div>
-      <HeroSection movies={movieData?.popular?.results} />
+    <>
+      <PageTitle title="홈" />
 
-      <NowPlayingSection movies={movieData?.nowPlaying?.results} />
+      <div>
+        <HeroSection movies={movieData?.popular?.results} />
 
-      <Top10Section movies={movieData?.popular?.results} />
+        <NowPlayingSection movies={movieData?.nowPlaying?.results} />
 
-      <UpcomingSection movies={movieData?.upcoming?.results} />
-    </div>
+        <Top10Section movies={movieData?.popular?.results} />
+
+        <UpcomingSection movies={movieData?.upcoming?.results} />
+      </div>
+    </>
   );
 }
