@@ -7,6 +7,7 @@ import { getProfile, getProfileMovies } from "../../api/MovieApi";
 import { Img500URL } from "../../constants/imgBaseUrl";
 import Loading from "../../components/Loading";
 import PageTitle from "../../components/PageTitle";
+import ErrorPage from "../ErrorPage";
 
 export default function Profile() {
   const { id } = useParams();
@@ -14,10 +15,13 @@ export default function Profile() {
   const [profile, setProfile] = useState(null);
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
+  });
 
+  useEffect(() => {
     const getProfileData = async () => {
       try {
         setLoading(true);
@@ -42,6 +46,7 @@ export default function Profile() {
         setMovies(filteredMovies);
       } catch (error) {
         console.log(error);
+        setError(error);
       } finally {
         setLoading(false);
       }
@@ -49,6 +54,10 @@ export default function Profile() {
 
     getProfileData();
   }, [id]);
+
+  if (error) {
+    return <ErrorPage />;
+  }
 
   if (loading) {
     return <Loading />;
@@ -129,9 +138,7 @@ export default function Profile() {
                   <CalendarDays className="h-5 w-5 text-white/50" />
 
                   <div>
-                    <p className="text-[10px] text-white/40">
-                      생년월일
-                    </p>
+                    <p className="text-[10px] text-white/40">생년월일</p>
 
                     <p className="mt-1 text-xs md:text-sm">
                       {profile.birthday || "정보 없음"}
@@ -143,13 +150,9 @@ export default function Profile() {
                   <UserRound className="h-5 w-5 text-white/50" />
 
                   <div>
-                    <p className="text-[10px] text-white/40">
-                      주요 활동
-                    </p>
+                    <p className="text-[10px] text-white/40">주요 활동</p>
 
-                    <p className="mt-1 text-xs md:text-sm">
-                      {department}
-                    </p>
+                    <p className="mt-1 text-xs md:text-sm">{department}</p>
                   </div>
                 </div>
 
@@ -157,9 +160,7 @@ export default function Profile() {
                   <MapPin className="h-5 w-5 text-white/50" />
 
                   <div>
-                    <p className="text-[10px] text-white/40">
-                      출생지
-                    </p>
+                    <p className="text-[10px] text-white/40">출생지</p>
 
                     <p className="mt-1 text-xs md:text-sm">
                       {profile.place_of_birth || "정보 없음"}

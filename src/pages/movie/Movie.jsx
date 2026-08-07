@@ -93,9 +93,7 @@ export default function Movie() {
     return <Loading />;
   }
 
-  const directors = credits.crew.filter(
-    (person) => person.job === "Director",
-  );
+  const directors = credits.crew.filter((person) => person.job === "Director");
 
   const director = directors[0];
 
@@ -103,25 +101,18 @@ export default function Movie() {
 
   const officialTrailers = videos.results.filter(
     (video) =>
-      video.site === "YouTube" &&
-      video.type === "Trailer" &&
-      video.official,
+      video.site === "YouTube" && video.type === "Trailer" && video.official,
   );
 
   const trailers = videos.results.filter(
-    (video) =>
-      video.site === "YouTube" &&
-      video.type === "Trailer",
+    (video) => video.site === "YouTube" && video.type === "Trailer",
   );
 
   const youtubeVideos = videos.results.filter(
     (video) => video.site === "YouTube",
   );
 
-  const trailer =
-    officialTrailers[0] ||
-    trailers[0] ||
-    youtubeVideos[0];
+  const trailer = officialTrailers[0] || trailers[0] || youtubeVideos[0];
 
   const krProviders = watchProviders.results?.KR;
 
@@ -244,9 +235,7 @@ export default function Movie() {
                     )}
                   </div>
                 ) : (
-                  <p className="mt-4 text-xs text-white/50">
-                    정보가 없습니다.
-                  </p>
+                  <p className="mt-4 text-xs text-white/50">정보가 없습니다.</p>
                 )}
               </div>
             </div>
@@ -305,9 +294,7 @@ export default function Movie() {
                   <span className="mt-2 flex items-center gap-2 text-[16px] font-bold lg:mt-3 lg:text-xl">
                     <Clock3 className="h-5 w-5 text-white/70" />
 
-                    {movie.runtime
-                      ? `${movie.runtime}분`
-                      : "정보 없음"}
+                    {movie.runtime ? `${movie.runtime}분` : "정보 없음"}
                   </span>
                 </div>
 
@@ -343,11 +330,13 @@ export default function Movie() {
                       <Link to={`/profile/${director.id}`}>
                         <div className="flex items-center gap-4">
                           {director.profile_path ? (
-                            <img
-                              src={Img500URL + director.profile_path}
-                              alt={director.name}
-                              className="h-[100px] w-[70px] rounded-[5px] object-cover transition hover:scale-105 lg:h-[130px] lg:w-[90px]"
-                            />
+                            <div className="overflow-hidden rounded-[5px]">
+                              <img
+                                src={Img500URL + director.profile_path}
+                                alt={director.name}
+                                className="h-[100px] w-[70px] rounded-[5px] object-cover transition hover:scale-105 lg:h-[130px] lg:w-[90px]"
+                              />
+                            </div>
                           ) : (
                             <div className="flex h-[100px] w-[70px] items-center justify-center rounded-[5px] bg-white/10 px-2 text-center text-[10px] text-white/40 lg:h-[130px] lg:w-[90px]">
                               이미지 없음
@@ -355,20 +344,14 @@ export default function Movie() {
                           )}
 
                           <div>
-                            <p className="text-sm font-bold">
-                              {director.name}
-                            </p>
+                            <p className="text-sm font-bold">{director.name}</p>
 
-                            <p className="mt-2 text-xs text-white/45">
-                              Director
-                            </p>
+                            <p className="mt-2 text-xs text-white/45">감독</p>
                           </div>
                         </div>
                       </Link>
                     ) : (
-                      <p className="text-sm text-white/45">
-                        감독 정보 없음
-                      </p>
+                      <p className="text-sm text-white/45">정보 없음</p>
                     )}
                   </div>
 
@@ -396,11 +379,13 @@ export default function Movie() {
                           <Link to={`/profile/${person.id}`}>
                             <div className="pb-4">
                               {person.profile_path ? (
-                                <img
-                                  src={Img500URL + person.profile_path}
-                                  alt={person.name}
-                                  className="w-full rounded-[5px] object-cover transition hover:scale-105"
-                                />
+                                <div className="overflow-hidden rounded-[5px]">
+                                  <img
+                                    src={Img500URL + person.profile_path}
+                                    alt={person.name}
+                                    className="w-full rounded-[5px] object-cover transition duration-300 hover:scale-105"
+                                  />
+                                </div>
                               ) : (
                                 <div className="flex h-[120px] w-full items-center justify-center rounded-[5px] bg-white/10 px-2 text-center text-[10px] text-white/40 md:h-[140px] lg:h-[160px]">
                                   이미지 없음
@@ -428,10 +413,7 @@ export default function Movie() {
           </div>
         </section>
 
-        <Similar
-          movies={genreMovies}
-          genreName={movie.genres?.[0]?.name}
-        />
+        <Similar movies={genreMovies} genreName={movie.genres?.[0]?.name} />
       </div>
     </>
   );

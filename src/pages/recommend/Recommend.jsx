@@ -49,8 +49,6 @@ export default function Recommend() {
   }, []);
 
   const getRandomMovie = () => {
-    if (!swiper || rolling) return;
-
     setRolling(true);
     setRandomMovie(null);
 
@@ -114,9 +112,7 @@ export default function Recommend() {
         "
       >
         <div className="text-center">
-          <p className="text-xs font-bold text-red-500 sm:text-sm">
-            BOM-PICK!
-          </p>
+          <p className="text-xs font-bold text-red-500 sm:text-sm">BOM-PICK!</p>
 
           <h1 className="mt-2 text-xl font-bold sm:text-2xl md:text-3xl">
             오늘의 추천영화

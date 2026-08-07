@@ -17,7 +17,7 @@ export default function Header() {
       <Link
         to="/"
         className="
-          whitespace-nowrap text-lg font-black text-red-500
+          text-lg font-black text-red-500
           md:text-xl
           lg:text-2xl
         "

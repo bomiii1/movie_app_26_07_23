@@ -46,7 +46,7 @@
 
 @media (min-width: 768px) {
   .hero-swiper {
-    height: calc(100vh - 72px);
+    height: 50vh;
   }
 
   .hero-swiper .swiper-pagination {

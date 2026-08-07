@@ -48,7 +48,7 @@ export default function UpcomingSection({ movies }) {
                   <img
                     src={Img500URL + movie.poster_path}
                     alt={movie.title}
-                    className="w-full object-cover transition duration-300 hover:scale-105"
+                    className="aspect-[2/3] w-full rounded-lg object-cover hover:scale-105 transition duration-300"
                   />
                 </div>
 
