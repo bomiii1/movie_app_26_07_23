@@ -2,7 +2,7 @@
 
 > TMDB API를 활용한 반응형 영화 정보 웹 애플리케이션
 
-🔗 **Demo**: 배포 주소  
+🔗 **Demo**: (https://bomiii1.github.io/movie_app_26_07_23/)
 📄 **GitHub**: https://github.com/bomiii1/movie_app_26_07_23
 
 ## 📖 프로젝트 소개
